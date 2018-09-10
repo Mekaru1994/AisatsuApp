@@ -16,6 +16,7 @@ package jp.techacademy.takaaki.mekaru.aisatsuapp;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView mTextView;
+    String greeting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
                         if (hourOfDay >= 2 && hourOfDay <= 9) {
-                            mTextView.setText("おはよう");
+                            greeting = "おはよう";
                         } else if (hourOfDay >= 10 && hourOfDay <= 17) {
-                            mTextView.setText("こんにちは");
-                        } else if (hourOfDay >= 18 && hourOfDay <= 1) {
-                            mTextView.setText("こんばんは");
+                            greeting = "こんにちは";
+                        } else {
+                            greeting = "こんばんは";
                         }
 
-                        String greeting = "";
+                        TextView textView = (TextView)findViewById(R.id.textView);
+                        textView.setText(greeting);
 
                         Log.d("UI-PARTS", String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
                     }
